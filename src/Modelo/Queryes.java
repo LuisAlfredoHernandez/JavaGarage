@@ -12,18 +12,20 @@ import Controlador.Vehiculo;
 	public class Queryes {
 		
 		public static Connection getConnection(){
-				  String URL ="jdbc:mysql://localhost/java_projectdb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-				  String User = "root";
-				  String Pass = "19998399";
-				  Connection conexion = null;
-				try{
-					Class.forName("com.mysql.cj.jdbc.Driver");
-					conexion = DriverManager.getConnection(URL, User, Pass);
-				} catch(ClassNotFoundException e){
-			        e.printStackTrace();
-				  } catch (SQLException e) {
-					e.printStackTrace();
-				}
+			  String URL ="jdbc:mysql://localhost/java_projectdb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+			  String User = "root";
+			  String Pass = "19998399";
+			  Connection conexion = null;
+			  
+			try{
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				conexion = DriverManager.getConnection(URL, User, Pass);
+			} catch(ClassNotFoundException e){
+		        e.printStackTrace();
+			  } 
+			catch (SQLException e) {
+				e.printStackTrace();
+			   } 
 			return conexion;            
 		}   
 	   
@@ -46,8 +48,8 @@ import Controlador.Vehiculo;
 		            status=ps.executeUpdate();  
 		            con.close();  
 		        }catch(SQLException e1){
-		        		e1.printStackTrace();
-		        	}  
+		        	e1.printStackTrace();
+		         }  
 		        return status;
 		    }  
 	
@@ -63,8 +65,8 @@ import Controlador.Vehiculo;
 		            status = ps.executeUpdate();  
 		            con.close();  
 		        }catch(SQLException e1){
-		        		e1.printStackTrace();
-		        	}  
+		        	e1.printStackTrace();
+		          }  
 		        return status;
 		    }  
 	
@@ -79,26 +81,26 @@ import Controlador.Vehiculo;
 		            ResultSet res = ps.executeQuery();  
 		         	data = new String[8][20];
 		         	int i = 0;
-		         	
-						while (res.next()) {
-							String marca = res.getString("Marca");
-							String modelo = res.getString("Modelo");
-							int año = res.getInt("Año");
-							int matricula = res.getInt("Matricula");
-							int dueño_cedula = res.getInt("Dueño_cedula");
-							String fecha_entrada = res.getString("Fecha_entrada");
-							String fecha_salida = res.getString("Fecha_salida");
-							String estado = res.getString("Estado");
-							data[i][0] = marca;
-							data[i][1] = modelo;
-							data[i][2] = año+"";
-							data[i][3] = matricula+"";
-							data[i][4] = dueño_cedula+"";
-							data[i][5] = fecha_entrada;
-							data[i][6] = fecha_salida;
-							data[i][7] = estado;
-							i++;
-						}
+	         	
+					while (res.next()) {
+						String marca = res.getString("Marca");
+						String modelo = res.getString("Modelo");
+						int año = res.getInt("Año");
+						int matricula = res.getInt("Matricula");
+						int dueño_cedula = res.getInt("Dueño_cedula");
+						String fecha_entrada = res.getString("Fecha_entrada");
+						String fecha_salida = res.getString("Fecha_salida");
+						String estado = res.getString("Estado");
+						data[i][0] = marca;
+						data[i][1] = modelo;
+						data[i][2] = año+"";
+						data[i][3] = matricula+"";
+						data[i][4] = dueño_cedula+"";
+						data[i][5] = fecha_entrada;
+						data[i][6] = fecha_salida;
+						data[i][7] = estado;
+						i++;
+					}
 		             con.close();  
 		        }catch(Exception e){e.printStackTrace();}         
 				return data;  
